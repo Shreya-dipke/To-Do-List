@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enhanced To-Do List</title>
+  <style>
+    /* Body Styles */
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #74ebd5, #9face6);
+      color: #333;
+    }
+
+    /* Header Styles */
+    header, footer {
+      background: #6a11cb;
+      color: white;
+      text-align: center;
+      padding: 15px 0;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1, footer p {
+      margin: 0;
+    }
+
+    /* Container Styles */
+    .container {
+      background: white;
+      padding: 20px 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      width: 400px;
+      margin: 30px auto;
+      text-align: center;
+    }
+
+    /* Input and Button Styles */
+    input[type="text"] {
+      width: calc(100% - 20px);
+      padding: 10px;
+      margin-bottom: 15px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      outline: none;
+    }
+
+    input[type="text"]:focus {
+      border-color: #6a11cb;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #6a11cb;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #2575fc;
+    }
+
+    /* Task Card Styles */
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(135deg, #43cea2, #185a9d);
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 10px;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Delete Button Styles */
+    .delete {
+      background: #ff6b6b;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background 0.3s ease;
+    }
+
+    .delete:hover {
+      background: #d64545;
+    }
+
+    /* Example Section Styles */
+    .example-box {
+      margin: 20px auto;
+      text-align: center;
+      color: #444;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    footer p {
+      font-size: 14px;
+    }
+
+    .footer-link {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .footer-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header Section -->
+  <header>
+    <h1>Welcome to Your To-Do List</h1>
+    <p>Plan, Organize, and Succeed!</p>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container">
+    <h2>My To-Do List</h2>
+    <input type="text" id="taskInput" placeholder="Add a new task">
+    <button onclick="addTask()">Add Task</button>
+    <ul id="taskList"></ul>
+  </div>
+
+  <!-- Example Suggestions -->
+  <div class="example-box">
+    <p><strong>You can also add:</strong></p>
+    <ul>
+      <li>🛒 Grocery shopping</li>
+      <li>🏋️ Workout at the gym</li>
+      <li>📄 Finish the project report</li>
+    </ul>
+    <p>Start organizing your tasks today for a more productive tomorrow!</p>
+  </div>
+
+  <!-- Footer Section -->
+  <footer>
+    <p>&copy; 2024 TaskMaster | Designed with ❤️ by <a href="#" class="footer-link">You</a></p>
+  </footer>
+
+  <script>
+    function addTask() {
+      const taskInput = document.getElementById("taskInput");
+      const taskText = taskInput.value.trim();
+
+      if (taskText === "") {
+        alert("Please enter a task!");
+        return;
+      }
+
+      const taskList = document.getElementById("taskList");
+
+      // Create a new list item
+      const listItem = document.createElement("li");
+
+      // Task text
+      const taskTextNode = document.createTextNode(taskText);
+
+      // Add a delete button
+      const deleteButton = document.createElement("button");
+      deleteButton.textContent = "Delete";
+      deleteButton.className = "delete";
+      deleteButton.onclick = () => taskList.removeChild(listItem);
+
+      listItem.appendChild(taskTextNode);
+      listItem.appendChild(deleteButton);
+      taskList.appendChild(listItem);
+
+      // Clear input field
+      taskInput.value = "";
+    }
+  </script>
+</body>
+</html>
